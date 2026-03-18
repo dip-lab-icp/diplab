@@ -66,7 +66,7 @@ export default function Home() {
           </div>
           <div className="flex justify-center">
             <img
-              src="/images/dip_lab_logo.webp"
+              src={import.meta.env.BASE_URL + 'images/dip_lab_logo.webp'}
               alt="DIP Lab Logo"
               className="w-64 h-64 rounded-full shadow-2xl"
             />

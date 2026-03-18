@@ -25,7 +25,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img
-              src="/images/dip_lab_logo.webp"
+              src={import.meta.env.BASE_URL + 'images/dip_lab_logo.webp'}
               alt="DIP Lab Logo"
               className="h-10 w-10 rounded-full"
             />

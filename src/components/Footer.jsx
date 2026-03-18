@@ -42,7 +42,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
               >
                 <img
-                  src="/images/icp_logo.webp"
+                  src={import.meta.env.BASE_URL + 'images/icp_logo.webp'}
                   alt="Islamia College Peshawar"
                   className="h-12 w-auto transition-opacity duration-200 hover:opacity-75"
                 />
