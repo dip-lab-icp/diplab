@@ -9,6 +9,7 @@ export default function Contact() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [showInfo, setShowInfo] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -20,27 +21,8 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
-
-    try {
-      const response = await fetch('http://localhost:8000/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-
-      if (response.ok) {
-        setSubmitted(true)
-        setFormData({ name: '', email: '', message: '' })
-        setTimeout(() => setSubmitted(false), 5000)
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error)
-    } finally {
-      setLoading(false)
-    }
+    setShowInfo(true)
+    setTimeout(() => setShowInfo(false), 5000)
   }
 
   return (
@@ -63,6 +45,12 @@ export default function Contact() {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-md p-8">
               <h2 className="font-heading font-bold text-2xl text-navy mb-6">Send us a Message</h2>
+
+              {showInfo && (
+                <div className="mb-6 p-4 bg-blue-100 text-blue-800 rounded-lg">
+                  Thank you for reaching out! Please send us an email directly or use the contact information on the right.
+                </div>
+              )}
 
               {submitted && (
                 <div className="mb-6 p-4 bg-green-100 text-green-800 rounded-lg">
@@ -125,10 +113,9 @@ export default function Contact() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={loading}
-                  className="w-full bg-teal text-white font-bold px-6 py-3 rounded hover:bg-navy transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-teal text-white font-bold px-6 py-3 rounded hover:bg-navy transition-colors"
                 >
-                  {loading ? 'Sending...' : 'Send Message'}
+                  Submit
                 </button>
               </form>
             </div>

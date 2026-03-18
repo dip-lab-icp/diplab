@@ -11,7 +11,7 @@ export default function News() {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/news')
+      const response = await fetch('/data/news.json')
       const data = await response.json()
       setNews(data.sort((a, b) => new Date(b.date) - new Date(a.date)))
     } catch (error) {

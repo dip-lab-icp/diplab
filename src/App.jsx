@@ -10,8 +10,9 @@ import News from './pages/News'
 import Contact from './pages/Contact'
 
 function App() {
+  const basename = import.meta.env.PROD ? '/diplab/' : '/'
   return (
-    <Router>
+    <Router basename={basename}>
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-grow">

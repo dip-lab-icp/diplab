@@ -15,7 +15,7 @@ export default function Publications() {
 
   const fetchPublications = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/publications')
+      const response = await fetch('/data/publications.json')
       if (!response.ok) throw new Error('Failed to fetch')
       const data = await response.json()
       // Sort by year descending
