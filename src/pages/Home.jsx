@@ -57,13 +57,6 @@ export default function Home() {
               {/* Leading research in artificial intelligence and computer vision since 2015. */}
               A hub for advancing research in Artificial Intelligence (AI) and Computer Vision since 2015.
             </p>
-            <Link
-              to="/research"
-              className="inline-flex items-center space-x-2 bg-teal text-navy font-bold px-8 py-3 rounded-lg hover:bg-white transition-colors"
-            >
-              <span>Explore Research</span>
-              <ArrowRight size={20} />
-            </Link>
           </div>
           <div className="flex justify-center">
             <img
