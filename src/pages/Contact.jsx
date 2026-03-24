@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { MapPin, Mail, ExternalLink } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,7 +10,6 @@ export default function Contact() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [showInfo, setShowInfo] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -21,8 +21,30 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setShowInfo(true)
-    setTimeout(() => setShowInfo(false), 5000)
+    setLoading(true)
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: '201350@icp.edu.pk',
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+
+      setSubmitted(true)
+      setFormData({ name: '', email: '', message: '' })
+      setTimeout(() => setSubmitted(false), 5000)
+    } catch (error) {
+      alert('Failed to send message. Please try again.')
+      console.error('EmailJS error:', error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -46,12 +68,6 @@ export default function Contact() {
             <div className="bg-white rounded-lg shadow-md p-8">
               <h2 className="font-heading font-bold text-2xl text-navy mb-6">Send us a Message</h2>
 
-              {showInfo && (
-                <div className="mb-6 p-4 bg-blue-100 text-blue-800 rounded-lg">
-                  Thank you for reaching out! Please send us an email directly or use the contact information on the right.
-                </div>
-              )}
-
               {submitted && (
                 <div className="mb-6 p-4 bg-green-100 text-green-800 rounded-lg">
                   Thank you for your message! We'll get back to you soon.
@@ -72,7 +88,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal"
-                    placeholder="John Doe"
+                    placeholder="Muhammad Ali"
                   />
                 </div>
 
@@ -89,7 +105,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-teal focus:ring-1 focus:ring-teal"
-                    placeholder="john@example.com"
+                    placeholder="ali@example.com"
                   />
                 </div>
 
@@ -113,9 +129,10 @@ export default function Contact() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-teal text-white font-bold px-6 py-3 rounded hover:bg-navy transition-colors"
+                  disabled={loading}
+                  className="w-full bg-teal text-white font-bold px-6 py-3 rounded hover:bg-navy transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
-                  Submit
+                  {loading ? 'Sending...' : 'Submit'}
                 </button>
               </form>
             </div>

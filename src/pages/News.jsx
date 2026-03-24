@@ -56,7 +56,7 @@ export default function News() {
       </section>
 
       {/* Subscribe CTA */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-light-gray">
+      {/* <section className="py-16 px-4 sm:px-6 lg:px-8 bg-light-gray">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-heading font-bold text-3xl text-navy mb-4">
             Stay Updated
@@ -75,7 +75,7 @@ export default function News() {
             </button>
           </form>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }

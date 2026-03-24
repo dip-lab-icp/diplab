@@ -11,11 +11,11 @@ export default function About() {
 
   const countries = [
     { name: 'South Korea', flag: '🇰🇷' },
-    { name: 'Australia', flag: '🇦🇺' },
     { name: 'USA', flag: '🇺🇸' },
-    { name: 'UAE', flag: '🇦🇪' },
-    { name: 'Canada', flag: '🇨🇦' },
     { name: 'UK', flag: '🇬🇧' },
+    { name: 'UAE', flag: '🇦🇪' },
+    { name: 'Australia', flag: '🇦🇺' },
+    { name: 'Canada', flag: '🇨🇦' },
     { name: 'Spain', flag: '🇪🇸' },
   ]
 
@@ -27,9 +27,6 @@ export default function About() {
           <h1 className="font-heading font-bold text-4xl md:text-5xl text-white mb-4">
             About DIP Lab
           </h1>
-          <p className="text-lg text-gray-100">
-            Understanding our mission, history, and global impact
-          </p>
         </div>
       </section>
 
@@ -73,7 +70,7 @@ export default function About() {
               <li className="flex items-start space-x-3">
                 <span className="text-teal font-bold text-xl">✓</span>
                 <span>
-                  <strong>International presence</strong> across 7 countries
+                  <strong>International presence</strong> across 7+ countries
                 </span>
               </li>
               <li className="flex items-start space-x-3">
@@ -101,9 +98,6 @@ export default function About() {
               {piProfile.name}
             </h3>
             <p className="text-teal font-semibold mb-6">{piProfile.role}</p>
-            <p className="text-gray-600 text-sm mb-6">
-              Leading research initiatives in computer vision, deep learning, and image processing
-            </p>
             <div className="flex gap-3 justify-center flex-wrap">
               <a
                 href={piProfile.personalWebsite}

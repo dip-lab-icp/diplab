@@ -11,8 +11,7 @@ export default function Footer() {
           <div>
             <h3 className="font-heading font-bold text-lg mb-3">DIP Lab</h3>
             <p className="text-gray-300 text-sm">
-              Digital Image Processing Laboratory, Islamia College Peshawar. A hub for advancing research in
-              Artificial Intelligence (AI) and Computer Vision.
+              Digital Image Processing Laboratory, Islamia College Peshawar.
             </p>
           </div>
 

@@ -51,10 +51,11 @@ export default function Home() {
               Digital Image Processing Laboratory
             </h1>
             <p className="text-xl text-gray-100 mb-6 leading-relaxed">
-              Advancing Vision Through Research
+              Islamia College Peshawar (Public Sector University)
             </p>
             <p className="text-gray-200 text-lg mb-8">
-              Leading research in computer vision, deep learning, and autonomous systems since 2015.
+              {/* Leading research in artificial intelligence and computer vision since 2015. */}
+              A hub for advancing research in Artificial Intelligence (AI) and Computer Vision since 2015.
             </p>
             <Link
               to="/research"
@@ -127,14 +128,6 @@ export default function Home() {
                 </p>
               </div>
             ))}
-          </div>
-          <div className="text-center mt-12">
-            <Link
-              to="/research"
-              className="inline-block bg-teal text-white font-bold px-8 py-3 rounded-lg hover:bg-navy transition-colors"
-            >
-              View All Research Areas
-            </Link>
           </div>
         </div>
       </section>
