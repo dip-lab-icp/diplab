@@ -62,7 +62,7 @@ export default function Home() {
             <img
               src={import.meta.env.BASE_URL + 'images/dip_lab_logo.webp'}
               alt="DIP Lab Logo"
-              className="w-64 h-64 rounded-full shadow-2xl"
+              className="w-64 h-64 rounded-2xl shadow-2xl object-cover"
             />
           </div>
         </div>
@@ -71,7 +71,7 @@ export default function Home() {
       {/* Impact Stats */}
       <section className="bg-light-gray py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
             {impactStats.map((stat, idx) => (
               <div key={idx}>
                 <p className="text-sm text-gray-600 mb-2">{stat.label}</p>
@@ -88,7 +88,7 @@ export default function Home() {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="font-heading font-bold text-4xl text-navy mb-8 text-center">
-            About DIP Lab
+            About
           </h2>
           <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto leading-relaxed">
             The Digital Image Processing Laboratory at Islamia College Peshawar is dedicated to

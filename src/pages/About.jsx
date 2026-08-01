@@ -91,9 +91,11 @@ export default function About() {
             Principal Investigator
           </h2>
           <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8 text-center">
-            <div className="w-32 h-32 bg-navy rounded-full mx-auto mb-6 flex items-center justify-center">
-              <span className="text-5xl">👨‍🎓</span>
-            </div>
+            <img
+              src="/images/Sajjad.jpg"
+              alt={piProfile.name}
+              className="w-32 h-32 rounded-full object-cover mx-auto mb-6 border-4 border-teal"
+            />
             <h3 className="font-heading font-bold text-2xl text-navy mb-2">
               {piProfile.name}
             </h3>

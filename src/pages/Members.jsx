@@ -26,7 +26,7 @@ export default function Members() {
       {
         name: 'Muhammad Saqib',
         role: 'Research Assistant',
-        thesis: 'Multimodal Anomaly Detection',
+        thesis: 'Emotion Recognition',
       },
       {
         name: 'Muhammad Farooq',
