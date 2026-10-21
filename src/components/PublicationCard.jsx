@@ -2,46 +2,38 @@ import { ExternalLink } from 'lucide-react'
 
 export default function PublicationCard({ publication }) {
   return (
-    <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-l-4 border-teal">
-      {/* Title */}
-      <h3 className="font-heading font-bold text-lg text-navy mb-2 line-clamp-2">
+    <article className="rounded-2xl border border-navy/10 border-l-4 border-l-ember bg-white p-6 shadow-card">
+      <h3 className="font-heading text-lg font-bold leading-snug text-navy">
         {publication.title}
       </h3>
+      <p className="mt-2 text-sm leading-relaxed text-muted">{publication.authors}</p>
 
-      {/* Authors */}
-      <p className="text-sm text-gray-600 mb-3">
-        {publication.authors}
-      </p>
-
-      {/* Venue and Year */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        <span className="inline-block bg-light-gray text-navy px-3 py-1 rounded text-xs font-medium">
+      <div className="mt-4 flex flex-wrap gap-2">
+        <span className="rounded-full bg-paper px-3 py-1 text-xs font-medium text-navy">
           {publication.venue}
         </span>
-        <span className="inline-block bg-teal bg-opacity-10 text-teal px-3 py-1 rounded text-xs font-medium">
+        <span className="rounded-full bg-navy/5 px-3 py-1 text-xs font-medium text-brand">
           {publication.year}
         </span>
       </div>
 
-      {/* Description */}
       {publication.description && (
-        <p className="text-sm text-gray-700 mb-4 line-clamp-2">
+        <p className="mt-4 text-sm leading-relaxed text-ink/80">
           {publication.description}
         </p>
       )}
 
-      {/* PDF Link */}
       {publication.pdfUrl && (
         <a
           href={publication.pdfUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center space-x-2 text-teal hover:text-navy font-medium text-sm mt-2"
+          className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand hover:text-navy"
         >
-          <span>View PDF</span>
+          <span>View publication</span>
           <ExternalLink size={14} />
         </a>
       )}
-    </div>
+    </article>
   )
 }

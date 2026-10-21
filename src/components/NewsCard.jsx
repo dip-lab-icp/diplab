@@ -8,32 +8,19 @@ export default function NewsCard({ news }) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-      <div className="p-6">
-        {/* Date */}
-        <p className="text-xs text-teal font-semibold uppercase tracking-wide mb-2">
+    <article className="rounded-2xl border border-navy/10 bg-white p-6 shadow-card">
+      <div className="flex flex-wrap items-center gap-3">
+        <time className="text-xs font-semibold uppercase tracking-[0.16em] text-ember">
           {formatDate(news.date)}
-        </p>
-
-        {/* Title */}
-        <h3 className="font-heading font-bold text-lg text-navy mb-3">
-          {news.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-gray-700 text-sm leading-relaxed line-clamp-3">
-          {news.description}
-        </p>
-
-        {/* Category Badge */}
+        </time>
         {news.category && (
-          <div className="mt-4">
-            <span className="inline-block bg-light-gray text-navy px-3 py-1 rounded-full text-xs font-medium">
-              {news.category}
-            </span>
-          </div>
+          <span className="rounded-full bg-paper px-3 py-1 text-xs font-medium text-navy">
+            {news.category}
+          </span>
         )}
       </div>
-    </div>
+      <h3 className="mt-3 font-heading text-xl font-bold text-navy">{news.title}</h3>
+      <p className="mt-3 text-sm leading-relaxed text-ink/80">{news.description}</p>
+    </article>
   )
 }

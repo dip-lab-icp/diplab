@@ -1,14 +1,10 @@
 import { ExternalLink } from 'lucide-react'
-import MemberCard from '../components/MemberCard'
+import PageHeader from '../components/PageHeader'
+import { OrgProfileCards } from '../components/OrgLinks'
+import { asset, MAPS_URL } from '../lib/site'
+import { principalInvestigator } from '../data/members'
 
 export default function About() {
-  const piProfile = {
-    name: 'Dr. Muhammad Sajjad',
-    role: 'Associate Professor & Principal Investigator',
-    scholarUrl: 'https://scholar.google.com/citations?user=E4-dElIAAAAJ&hl=en&oi=ao',
-    personalWebsite: 'https://qazimsajjad.github.io/',
-  }
-
   const countries = [
     { name: 'South Korea', flag: '🇰🇷' },
     { name: 'USA', flag: '🇺🇸' },
@@ -19,151 +15,176 @@ export default function About() {
     { name: 'Spain', flag: '🇪🇸' },
   ]
 
+  const achievements = [
+    {
+      title: '50+ alumni',
+      text: 'Pursuing or having completed higher studies at leading universities worldwide.',
+    },
+    {
+      title: 'Fully funded scholarships',
+      text: 'Graduates have moved on to top institutions with fully funded opportunities.',
+    },
+    {
+      title: 'International presence',
+      text: 'An alumni network spanning more than seven countries.',
+    },
+    {
+      title: 'Active collaboration',
+      text: 'Ongoing research partnerships with universities internationally.',
+    },
+  ]
+
   return (
-    <div className="min-h-screen">
-      {/* Hero */}
-      <section className="bg-gradient-to-r from-navy to-teal py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="font-heading font-bold text-4xl md:text-5xl text-white mb-4">
-            About DIP Lab
-          </h1>
+    <div>
+      <PageHeader
+        kicker="About"
+        title="A computer vision laboratory at Islamia College Peshawar"
+        description="Founded in 2015, DIP Lab conducts research in artificial intelligence, image processing, and visual understanding."
+      />
+
+      <section className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8 lg:py-20">
+        <div>
+          <p className="section-kicker">Mission</p>
+          <h2 className="section-heading">What we work on</h2>
+          <div className="mt-6 space-y-4 text-base leading-relaxed text-ink/80">
+            <p>
+              The Digital Image Processing Laboratory is a research laboratory of
+              Islamia College Peshawar, a public-sector university based in Peshawar,
+              Pakistan. Since its founding in 2015, the lab has published in artificial
+              intelligence and computer vision, including medical imaging, autonomous
+              navigation, and surveillance systems.
+            </p>
+            <p>
+              The laboratory also maintains a strong alumni network, with graduates
+              working in academia and industry around the world.
+            </p>
+          </div>
+        </div>
+        <div className="overflow-hidden rounded-3xl border border-navy/10 shadow-card">
+          <img
+            src={asset('images/islamia_college_peshawar.webp')}
+            alt="Islamia College Peshawar campus"
+            className="h-full min-h-[240px] w-full object-cover"
+          />
         </div>
       </section>
 
-      {/* Mission & History */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-12">
-            <h2 className="font-heading font-bold text-3xl text-navy mb-4">
-              Our Mission
-            </h2>
-            <p className="text-gray-700 text-lg leading-relaxed mb-4">
-              The Digital Image Processing (DIP) Laboratory is a state-of-the-art and well-established research laboratory of 
-              Islamia College Peshawar (Public Sector University) based in Peshawar, Pakistan. The DIP Lab was founded in 2015 
-              and since its inception, it has had a strong track record of publications in cutting-edge research areas of Artificial 
-              Intelligence (AI) and computer vision, including medical imaging, autonomous navigation and surveillance 
-              systems.  
-            </p>
-            <p className="text-gray-700 text-lg leading-relaxed">
-              The lab also has a strong alumni network throughout the world, working in both academia and industry.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="font-heading font-bold text-3xl text-navy mb-4">
-              Our Achievements
-            </h2>
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-start space-x-3">
-                <span className="text-teal font-bold text-xl">✓</span>
-                <span>
-                  <strong>50+ Alumni</strong> pursuing or having completed higher studies at leading
-                  universities worldwide
-                </span>
-              </li>
-              <li className="flex items-start space-x-3">
-                <span className="text-teal font-bold text-xl">✓</span>
-                <span>
-                  <strong>Fully funded scholarships</strong> for graduates to top institutions
-                </span>
-              </li>
-              <li className="flex items-start space-x-3">
-                <span className="text-teal font-bold text-xl">✓</span>
-                <span>
-                  <strong>International presence</strong> across 7+ countries
-                </span>
-              </li>
-              <li className="flex items-start space-x-3">
-                <span className="text-teal font-bold text-xl">✓</span>
-                <span>
-                  <strong>Active research collaboration</strong> with universities globally
-                </span>
-              </li>
-            </ul>
+      <section className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <p className="section-kicker">Impact</p>
+          <h2 className="section-heading">Our achievements</h2>
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {achievements.map((item) => (
+              <article key={item.title} className="rounded-2xl border border-navy/10 bg-paper p-6">
+                <h3 className="font-heading text-lg font-bold text-navy">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{item.text}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* PI Profile */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-light-gray">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="font-heading font-bold text-3xl text-navy mb-12 text-center">
-            Principal Investigator
-          </h2>
-          <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8 text-center">
-            <img
-              src="/images/Sajjad.jpg"
-              alt={piProfile.name}
-              className="w-32 h-32 rounded-full object-cover mx-auto mb-6 border-4 border-teal"
-            />
-            <h3 className="font-heading font-bold text-2xl text-navy mb-2">
-              {piProfile.name}
-            </h3>
-            <p className="text-teal font-semibold mb-6">{piProfile.role}</p>
-            <div className="flex gap-3 justify-center flex-wrap">
-              <a
-                href={piProfile.personalWebsite}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 bg-navy text-white font-bold px-6 py-2 rounded-lg hover:bg-teal transition-colors"
-              >
-                <span>Personal Website</span>
-                <ExternalLink size={18} />
-              </a>
-              <a
-                href={piProfile.scholarUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 bg-teal text-white font-bold px-6 py-2 rounded-lg hover:bg-navy transition-colors"
-              >
-                <span>Google Scholar</span>
-                <ExternalLink size={18} />
-              </a>
+      <section className="bg-paper py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <p className="section-kicker">Leadership</p>
+          <h2 className="section-heading">Principal investigator</h2>
+
+          <div className="mt-10 overflow-hidden rounded-3xl border border-navy/10 bg-white shadow-card">
+            <div className="grid md:grid-cols-[minmax(240px,320px)_1fr]">
+              <div className="bg-navy/5">
+                <img
+                  src={asset(principalInvestigator.image)}
+                  alt={`Portrait of ${principalInvestigator.name}`}
+                  width="640"
+                  height="800"
+                  className="h-72 w-full object-cover object-[center_18%] sm:h-96 md:h-full md:min-h-[28rem]"
+                />
+              </div>
+              <div className="p-6 sm:p-8 lg:p-10">
+                <h3 className="font-heading text-2xl font-bold text-navy md:text-3xl">
+                  {principalInvestigator.name}
+                </h3>
+                <p className="mt-2 font-medium text-brand">{principalInvestigator.role}</p>
+                <p className="mt-1 text-sm text-muted">{principalInvestigator.affiliation}</p>
+                <p className="mt-6 text-base leading-relaxed text-ink/80">
+                  {principalInvestigator.biography}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a
+                    href={principalInvestigator.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-navy"
+                  >
+                    Personal website
+                    <ExternalLink size={15} />
+                  </a>
+                  <a
+                    href={principalInvestigator.scholarUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-navy/15 px-6 py-3 text-sm font-semibold text-navy hover:border-brand hover:text-brand"
+                  >
+                    Google Scholar
+                    <ExternalLink size={15} />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Global Alumni Network */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="font-heading font-bold text-3xl text-navy mb-4 text-center">
-            Our Global Alumni Network
-          </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Our alumni have established themselves at leading institutions across the world
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <p className="section-kicker">Open research</p>
+        <h2 className="section-heading">Code and models</h2>
+        <p className="mt-4 max-w-2xl text-ink/75">
+          Follow the laboratory on GitHub and Hugging Face for organizational repositories
+          and shared models.
+        </p>
+        <div className="mt-8">
+          <OrgProfileCards />
+        </div>
+      </section>
+
+      <section className="bg-white py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <p className="section-kicker">Alumni</p>
+          <h2 className="section-heading">A global network</h2>
+          <p className="mt-4 max-w-2xl text-muted">
+            Alumni from DIP Lab have gone on to institutions across the world.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-            {countries.map((country, idx) => (
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+            {countries.map((country) => (
               <div
-                key={idx}
-                className="bg-light-gray rounded-lg p-6 text-center hover:shadow-lg transition-shadow"
+                key={country.name}
+                className="rounded-2xl border border-navy/10 bg-paper px-3 py-5 text-center"
               >
-                <div className="text-5xl mb-3">{country.flag}</div>
-                <p className="font-semibold text-navy text-sm">{country.name}</p>
+                <div className="text-3xl" aria-hidden="true">
+                  {country.flag}
+                </div>
+                <p className="mt-2 text-sm font-semibold text-navy">{country.name}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Info */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-navy text-white">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="font-heading font-bold text-3xl mb-8">
-            Visit Our Lab
-          </h2>
-          <div className="space-y-4 text-lg mb-8">
-            <p className="font-semibold">Academic Block</p>
-            <p>Islamia College Peshawar</p>
-            <p>25120, Khyber Pakhtunkhwa</p>
-            <p>Pakistan</p>
-          </div>
+      <section className="bg-navy py-16 text-white">
+        <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="font-heading text-3xl font-bold">Visit the laboratory</h2>
+          <address className="mt-5 not-italic leading-relaxed text-white/75">
+            Academic Block
+            <br />
+            Islamia College Peshawar
+            <br />
+            25120, Khyber Pakhtunkhwa, Pakistan
+          </address>
           <a
-            href="https://maps.google.com/?q=Islamia+College+Peshawar"
+            href={MAPS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-teal text-navy font-bold px-8 py-3 rounded-lg hover:bg-white transition-colors"
+            className="btn-primary mt-8"
           >
             Open in Google Maps
           </a>

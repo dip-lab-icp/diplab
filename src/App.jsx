@@ -3,23 +3,29 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
-// import Research from './pages/Research'
 import Publications from './pages/Publications'
 import Members from './pages/Members'
 import News from './pages/News'
 import Contact from './pages/Contact'
 
 function App() {
-  const basename = import.meta.env.PROD ? '/diplab/' : '/'
+  const rawBase = import.meta.env.BASE_URL
+  const basename = rawBase === '/' ? '/' : rawBase.replace(/\/$/, '')
+
   return (
     <Router basename={basename}>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex min-h-screen flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-navy"
+        >
+          Skip to content
+        </a>
         <Navbar />
-        <main className="flex-grow">
+        <main id="main-content" className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            {/* <Route path="/research" element={<Research />} /> */}
             <Route path="/publications" element={<Publications />} />
             <Route path="/members" element={<Members />} />
             <Route path="/news" element={<News />} />

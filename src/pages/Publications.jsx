@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react'
-import { Search, FileText, Users, Building2, Calendar } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Search, FileText, Building2, Calendar } from 'lucide-react'
 import PublicationCard from '../components/PublicationCard'
+import PageHeader from '../components/PageHeader'
+import { asset } from '../lib/site'
 
 export default function Publications() {
   const [publications, setPublications] = useState([])
@@ -15,10 +17,9 @@ export default function Publications() {
 
   const fetchPublications = async () => {
     try {
-      const response = await fetch(import.meta.env.BASE_URL + 'data/publications.json')
+      const response = await fetch(asset('data/publications.json'))
       if (!response.ok) throw new Error('Failed to fetch')
       const data = await response.json()
-      // Sort by year descending
       const sorted = Array.isArray(data) ? data.sort((a, b) => b.year - a.year) : []
       setPublications(sorted)
       setFilteredPublications(sorted)
@@ -39,11 +40,12 @@ export default function Publications() {
     }
 
     if (searchQuery) {
+      const query = searchQuery.toLowerCase()
       filtered = filtered.filter(
         (pub) =>
-          pub.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          pub.authors.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          pub.venue.toLowerCase().includes(searchQuery.toLowerCase())
+          pub.title.toLowerCase().includes(query) ||
+          pub.authors.toLowerCase().includes(query) ||
+          pub.venue.toLowerCase().includes(query)
       )
     }
 
@@ -55,147 +57,132 @@ export default function Publications() {
   )
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-navy to-teal py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-4 mb-4">
-            <FileText className="text-white" size={40} />
-            <div>
-              <h1 className="font-heading font-bold text-4xl md:text-5xl text-white">
-                Publications
-              </h1>
-            </div>
+    <div>
+      <PageHeader
+        kicker="Research"
+        title="Publications"
+        description="Selected research contributions from DIP Lab in computer vision, intelligent systems, and related fields."
+      >
+        {publications.length > 0 && (
+          <div className="mt-6 flex flex-wrap gap-6 text-sm text-white/80">
+            <span className="inline-flex items-center gap-2">
+              <Calendar size={16} />
+              Latest: {publications[0].year}
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <FileText size={16} />
+              {publications.length} publication{publications.length !== 1 ? 's' : ''}
+            </span>
           </div>
-          <p className="text-lg text-gray-100 max-w-3xl">
-            Explore our research contributions and academic publications across diverse fields of digital image processing and computer science.
-          </p>
-          {publications.length > 0 && (
-            <div className="mt-6 flex gap-6 text-white">
-              <div className="flex items-center gap-2">
-                <Calendar size={18} />
-                <span className="text-sm">Latest: {publications[0].year}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <FileText size={18} />
-                <span className="text-sm">{publications.length} Publication{publications.length !== 1 ? 's' : ''}</span>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
+        )}
+      </PageHeader>
 
-      {/* Search and Filter Bar */}
-      <section className="bg-light-gray py-6 px-4 sm:px-6 lg:px-8 sticky top-16 z-40 shadow-sm">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Search Input */}
-            <div className="md:col-span-2 relative">
-              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+      <section className="sticky top-[4.25rem] z-40 border-b border-navy/10 bg-white/95 backdrop-blur-md">
+        <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+            <div className="relative md:col-span-2">
+              <Search
+                size={18}
+                className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted"
+              />
               <input
-                type="text"
-                placeholder="Search publications by title, authors, or venue..."
+                type="search"
+                placeholder="Search by title, authors, or venue"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal focus:ring-opacity-50 transition"
+                className="w-full rounded-full border border-navy/15 bg-white py-3 pl-11 pr-4 text-sm focus:border-brand"
               />
             </div>
-
-            {/* Year Filter */}
             {years.length > 1 && (
               <select
                 value={selectedYear}
                 onChange={(e) => setSelectedYear(e.target.value)}
-                className="px-4 py-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal focus:ring-opacity-50 transition font-medium"
+                className="rounded-full border border-navy/15 bg-white px-4 py-3 text-sm font-medium focus:border-brand"
+                aria-label="Filter by year"
               >
                 {years.map((year) => (
                   <option key={year} value={year}>
-                    {year === 'all' ? 'All Years' : `Year ${year}`}
+                    {year === 'all' ? 'All years' : year}
                   </option>
                 ))}
               </select>
             )}
           </div>
-
           {filteredPublications.length > 0 && (
-            <p className="mt-4 text-sm text-gray-600 font-medium">
-              📚 Showing {filteredPublications.length} of {publications.length} publication{publications.length !== 1 ? 's' : ''}
+            <p className="mt-3 text-sm text-muted">
+              Showing {filteredPublications.length} of {publications.length} publication
+              {publications.length !== 1 ? 's' : ''}
             </p>
           )}
         </div>
       </section>
 
-      {/* Publications Grid */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {loading ? (
-            <div className="text-center py-20">
-              <div className="inline-block">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal"></div>
-              </div>
-              <p className="text-gray-600 mt-4 font-medium">Loading publications...</p>
-            </div>
-          ) : filteredPublications.length > 0 ? (
-            <div className="grid gap-6">
-              {filteredPublications.map((pub, idx) => (
-                <PublicationCard key={idx} publication={pub} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-20 bg-light-gray rounded-lg">
-              <FileText className="mx-auto text-gray-400 mb-4" size={48} />
-              <p className="text-gray-600 text-lg font-medium mb-2">
-                {publications.length === 0
-                  ? 'No publications available yet'
-                  : 'No publications match your search'}
-              </p>
-              <p className="text-gray-500 text-sm mb-6">
-                {searchQuery || selectedYear !== 'all'
-                  ? 'Try adjusting your search criteria'
-                  : 'Check back soon for our latest research papers'}
-              </p>
-              {(searchQuery || selectedYear !== 'all') && (
-                <button
-                  onClick={() => {
-                    setSearchQuery('')
-                    setSelectedYear('all')
-                  }}
-                  className="inline-flex items-center gap-2 px-6 py-2 bg-teal text-white rounded-lg hover:bg-navy transition font-medium"
-                >
-                  Clear Filters
-                </button>
-              )}
-            </div>
-          )}
-        </div>
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        {loading ? (
+          <div className="py-20 text-center">
+            <div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-navy/15 border-t-navy" />
+            <p className="mt-4 text-sm text-muted">Loading publications…</p>
+          </div>
+        ) : filteredPublications.length > 0 ? (
+          <div className="grid gap-5">
+            {filteredPublications.map((pub) => (
+              <PublicationCard key={`${pub.title}-${pub.year}`} publication={pub} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-navy/10 bg-white px-6 py-16 text-center">
+            <FileText className="mx-auto mb-4 text-muted" size={40} />
+            <p className="font-heading text-lg font-bold text-navy">
+              {publications.length === 0
+                ? 'No publications available yet'
+                : 'No publications match your search'}
+            </p>
+            <p className="mt-2 text-sm text-muted">
+              {searchQuery || selectedYear !== 'all'
+                ? 'Try adjusting the title, author, or year filters.'
+                : 'Check back soon for the latest research papers.'}
+            </p>
+            {(searchQuery || selectedYear !== 'all') && (
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchQuery('')
+                  setSelectedYear('all')
+                }}
+                className="btn-navy mt-6"
+              >
+                Clear filters
+              </button>
+            )}
+          </div>
+        )}
       </section>
 
-      {/* Stats Section */}
       {publications.length > 0 && (
-        <section className="bg-light-gray py-12 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="font-heading font-bold text-2xl text-navy mb-8 text-center">
-              Publication Statistics
+        <section className="bg-white py-14">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <h2 className="mb-8 text-center font-heading text-2xl font-bold text-navy">
+              Publication overview
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition">
-                <FileText className="text-teal mx-auto mb-3" size={32} />
-                <p className="text-3xl font-bold text-navy mb-2">{publications.length}</p>
-                <p className="text-gray-600 font-medium">Total Publications</p>
+            <div className="grid gap-5 md:grid-cols-3">
+              <div className="rounded-2xl border border-navy/10 p-6 text-center">
+                <FileText className="mx-auto mb-3 text-brand" size={28} />
+                <p className="font-heading text-3xl font-bold text-navy">{publications.length}</p>
+                <p className="mt-1 text-sm text-muted">Total publications</p>
               </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition">
-                <Calendar className="text-teal mx-auto mb-3" size={32} />
-                <p className="text-3xl font-bold text-navy mb-2">
+              <div className="rounded-2xl border border-navy/10 p-6 text-center">
+                <Calendar className="mx-auto mb-3 text-brand" size={28} />
+                <p className="font-heading text-3xl font-bold text-navy">
                   {Math.max(...publications.map((p) => p.year))}
                 </p>
-                <p className="text-gray-600 font-medium">Latest Year</p>
+                <p className="mt-1 text-sm text-muted">Latest year</p>
               </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition">
-                <Building2 className="text-teal mx-auto mb-3" size={32} />
-                <p className="text-3xl font-bold text-navy mb-2">
+              <div className="rounded-2xl border border-navy/10 p-6 text-center">
+                <Building2 className="mx-auto mb-3 text-brand" size={28} />
+                <p className="font-heading text-3xl font-bold text-navy">
                   {new Set(publications.map((p) => p.venue)).size}
                 </p>
-                <p className="text-gray-600 font-medium">Unique Venues</p>
+                <p className="mt-1 text-sm text-muted">Unique venues</p>
               </div>
             </div>
           </div>
