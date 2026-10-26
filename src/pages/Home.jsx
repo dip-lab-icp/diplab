@@ -100,7 +100,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-
+{/* 
           <div className="justify-self-center">
             <div className="rounded-3xl border border-white/15 bg-white p-5 shadow-card">
               <img
@@ -109,7 +109,7 @@ export default function Home() {
                 className="h-56 w-56 object-contain md:h-64 md:w-64"
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 

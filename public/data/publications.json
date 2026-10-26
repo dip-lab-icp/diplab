@@ -6,5 +6,21 @@
     "year": 2025,
     "description": "A comprehensive cybersecurity framework integrating quantum-resistant algorithms and cognitive computing for protecting IoE systems.",
     "pdfUrl": "https://ieeexplore.ieee.org/abstract/document/11235518"
+  },
+  {
+    "title": "Gated Fusion Networks for Multi-Modal Violence Detection",
+    "authors": "Bilal Ahmad, Mustaqeem Khan, Muhammad Sajjad",
+    "venue": "AI (MDPI)",
+    "year": 2025,
+    "description": "A gated fusion network that combines multiple modalities to detect violence more reliably.",
+    "pdfUrl": "https://www.mdpi.com/2673-2688/6/10/259"
+  },
+  {
+    "title": "Self-Supervised Learning for Driver Distraction Detection: A Comparative Study with Traditional Supervised Models",
+    "authors": "Luqman Ali, Mustaqeem Khan, Bilal Ahmad, Muhammad Saqib, Fady Alnajjar, Hamad Aljassmi",
+    "venue": "Proceedings of the AAAI Symposium Series",
+    "year": 2026,
+    "description": "A comparative study of self-supervised learning and traditional supervised models for detecting driver distraction.",
+    "pdfUrl": "https://doi.org/10.1609/aaai-ss.v9i1.43115"
   }
 ]

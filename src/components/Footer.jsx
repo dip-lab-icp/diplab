@@ -1,14 +1,7 @@
 import { Link } from 'react-router-dom'
 import { MapPin } from 'lucide-react'
 import { OrgIconLinks } from './OrgLinks'
-import {
-  asset,
-  GITHUB_ORG,
-  GITHUB_REPO,
-  HUGGINGFACE_ORG,
-  ICP_URL,
-  SCHOLAR_URL,
-} from '../lib/site'
+import { asset, ICP_URL } from '../lib/site'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -23,7 +16,7 @@ export default function Footer() {
 
   return (
     <footer className="mt-auto bg-navy text-white">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-3 lg:px-8">
         <div>
           <div className="mb-4 flex items-center gap-3">
             <img
@@ -41,7 +34,7 @@ export default function Footer() {
 
         <div>
           <h2 className="mb-4 font-heading text-sm font-bold uppercase tracking-[0.16em] text-white/50">
-            Explore
+            Navigation
           </h2>
           <ul className="space-y-2 text-sm">
             {explore.map((item) => (
@@ -53,30 +46,6 @@ export default function Footer() {
             ))}
           </ul>
         </div>
-
-        <div>
-          <h2 className="mb-4 font-heading text-sm font-bold uppercase tracking-[0.16em] text-white/50">
-            Connect
-          </h2>
-          <ul className="space-y-2 text-sm text-white/75">
-            <li>
-              <a href={GITHUB_ORG} target="_blank" rel="noopener noreferrer" className="hover:text-white">
-                GitHub organization
-              </a>
-            </li>
-            <li>
-              <a href={HUGGINGFACE_ORG} target="_blank" rel="noopener noreferrer" className="hover:text-white">
-                Hugging Face organization
-              </a>
-            </li>
-            <li>
-              <a href={SCHOLAR_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">
-                Google Scholar
-              </a>
-            </li>
-          </ul>
-        </div>
-
         <div>
           <h2 className="mb-4 font-heading text-sm font-bold uppercase tracking-[0.16em] text-white/50">
             Visit
@@ -109,9 +78,28 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <p>© {currentYear} Digital Image Processing Laboratory. All rights reserved.</p>
-          <p>Department of Computer Science, Islamia College Peshawar</p>
+        <div className="mx-auto max-w-6xl px-4 py-3 text-xs text-white/50 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 sm:gap-6">
+            <div>
+              <p>© {currentYear} Digital Image Processing Laboratory. All rights reserved.</p>
+              {/* <p>All rights reserved.</p> */}
+            </div>
+            <div>
+              <p>Department of Computer Science, Islamia College Peshawar</p>
+              {/* <p>Islamia College Peshawar</p> */}
+            </div>
+          </div>
+          <p className="mt-1 border-t border-white/10 pt-1 text-center">
+            Website developed by{' '}
+            <a
+              href="https://github.com/ImranNawar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-white"
+            >
+              Imran Nawar
+            </a>
+          </p>
         </div>
       </div>
     </footer>
