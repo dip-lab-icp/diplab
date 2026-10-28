@@ -70,16 +70,13 @@ export default function Home() {
         <img
           src={asset('images/islamia_college_peshawar.webp')}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-30"
+          className="absolute inset-0 h-full w-full object-cover opacity-70"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/92 to-navy/70" />
         <div className="bg-grid pointer-events-none absolute inset-0" aria-hidden="true" />
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 md:grid-cols-[1.15fr_0.85fr] md:py-28 lg:px-8">
           <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-ember">
-              Islamia College Peshawar · Since 2015
-            </p>
             <h1 className="font-heading text-4xl font-bold leading-[1.08] tracking-tight md:text-6xl">
               Digital Image Processing Laboratory
             </h1>
@@ -90,13 +87,9 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/publications" className="btn-primary">
                 Explore research
-                <ArrowRight size={16} />
               </Link>
               <Link to="/members" className="btn-secondary">
                 Meet the team
-              </Link>
-              <Link to="/contact" className="btn-secondary">
-                Collaborate
               </Link>
             </div>
           </div>
@@ -259,10 +252,10 @@ export default function Home() {
             Students, researchers, and partners are welcome to get in touch about
             supervision, collaboration, and visits to the laboratory.
           </p>
-          <Link to="/contact" className="btn-primary mt-8">
+          <a href="mailto:muhammad.sajjad@icp.edu.pk" className="btn-primary mt-8">
             Get in touch
             <ArrowRight size={16} />
-          </Link>
+          </a>
         </div>
       </section>
     </div>

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { ExternalLink } from 'lucide-react'
 import MemberCard from '../components/MemberCard'
 import PageHeader from '../components/PageHeader'
@@ -67,9 +66,9 @@ export default function Members() {
             We welcome motivated researchers and students interested in artificial
             intelligence and computer vision.
           </p>
-          <Link to="/contact" className="btn-primary mt-8">
+          <a href="mailto:muhammad.sajjad@icp.edu.pk" className="btn-primary mt-8">
             Contact us
-          </Link>
+          </a>
         </div>
       </section>
     </div>

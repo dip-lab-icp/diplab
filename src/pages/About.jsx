@@ -169,27 +169,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      <section className="bg-navy py-16 text-white">
-        <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="font-heading text-3xl font-bold">Visit the laboratory</h2>
-          <address className="mt-5 not-italic leading-relaxed text-white/75">
-            Academic Block
-            <br />
-            Islamia College Peshawar
-            <br />
-            25120, Khyber Pakhtunkhwa, Pakistan
-          </address>
-          <a
-            href={MAPS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary mt-8"
-          >
-            Open in Google Maps
-          </a>
-        </div>
-      </section>
     </div>
   )
 }

@@ -1,18 +1,9 @@
-import { Link } from 'react-router-dom'
-import { MapPin } from 'lucide-react'
+import { ExternalLink, Mail, MapPin } from 'lucide-react'
 import { OrgIconLinks } from './OrgLinks'
-import { asset, ICP_URL } from '../lib/site'
+import { asset, ICP_URL, MAPS_URL } from '../lib/site'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
-
-  const explore = [
-    { name: 'About', path: '/about' },
-    { name: 'Publications', path: '/publications' },
-    { name: 'Members', path: '/members' },
-    { name: 'News', path: '/news' },
-    { name: 'Contact', path: '/contact' },
-  ]
 
   return (
     <footer className="mt-auto bg-navy text-white">
@@ -34,20 +25,6 @@ export default function Footer() {
 
         <div>
           <h2 className="mb-4 font-heading text-sm font-bold uppercase tracking-[0.16em] text-white/50">
-            Navigation
-          </h2>
-          <ul className="space-y-2 text-sm">
-            {explore.map((item) => (
-              <li key={item.path}>
-                <Link to={item.path} className="text-white/75 hover:text-white">
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h2 className="mb-4 font-heading text-sm font-bold uppercase tracking-[0.16em] text-white/50">
             Visit
           </h2>
           <div className="flex items-start gap-2 text-sm text-white/75">
@@ -63,10 +40,39 @@ export default function Footer() {
             </address>
           </div>
           <a
+            href={MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-2 text-sm text-white/75 transition-colors hover:text-white"
+          >
+            Open in Maps
+            <ExternalLink size={14} aria-hidden="true" />
+          </a>
+        </div>
+
+        <div>
+          <h2 className="mb-4 font-heading text-sm font-bold uppercase tracking-[0.16em] text-white/50">
+            Contact
+          </h2>
+          <a
+            href="mailto:muhammad.sajjad@icp.edu.pk"
+            className="inline-flex items-start gap-2 break-all text-sm text-white/75 transition-colors hover:text-white"
+          >
+            <Mail size={16} className="mt-0.5 shrink-0" aria-hidden="true" />
+            muhammad.sajjad@icp.edu.pk
+          </a>
+          <a
+            href="tel:+923339319519"
+            className="mt-3 block text-sm text-white/75 transition-colors hover:text-white"
+          >
+            +92 333 9319519
+          </a>
+                    <a
             href={ICP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-5 inline-flex rounded-lg bg-white p-1 transition-opacity hover:opacity-80"
+            aria-label="Islamia College Peshawar"
           >
             <img
               src={asset('images/icp_logo.webp')}
@@ -78,18 +84,9 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-4 py-3 text-xs text-white/50 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 sm:gap-6">
-            <div>
-              <p>© {currentYear} Digital Image Processing Laboratory. All rights reserved.</p>
-              {/* <p>All rights reserved.</p> */}
-            </div>
-            <div>
-              <p>Department of Computer Science, Islamia College Peshawar</p>
-              {/* <p>Islamia College Peshawar</p> */}
-            </div>
-          </div>
-          <p className="mt-1 border-t border-white/10 pt-1 text-center">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+          <p>© {currentYear} Digital Image Processing Laboratory. All rights reserved.</p>
+          <p>
             Website developed by{' '}
             <a
               href="https://github.com/ImranNawar"

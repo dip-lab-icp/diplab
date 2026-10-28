@@ -6,7 +6,7 @@ import About from './pages/About'
 import Publications from './pages/Publications'
 import Members from './pages/Members'
 import News from './pages/News'
-import Contact from './pages/Contact'
+import Courses from './pages/Courses'
 
 function App() {
   const rawBase = import.meta.env.BASE_URL
@@ -26,10 +26,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/courses" element={<Courses />} />
             <Route path="/publications" element={<Publications />} />
             <Route path="/members" element={<Members />} />
             <Route path="/news" element={<News />} />
-            <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
         <Footer />
